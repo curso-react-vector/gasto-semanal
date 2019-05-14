@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class FormularioGasto extends Component {
     state = {
@@ -12,17 +13,16 @@ class FormularioGasto extends Component {
     crearGasto = (e) => {
         // Default prevent
         e.preventDefault();
-        console.log('Submit');
         // Crear el objecto con los datos
         const gasto = {
             nombreGasto: this.nombreGasto.current.value,
             cantidadGasto: this.cantidadGasto.current.value,
         }
-        console.log(gasto);
+        // console.log(gasto);
         e.currentTarget.reset();
 
         // Agregarlo y enviarlo por props
-
+        this.props.agregarGasto(gasto);
 
         // Resetear el formulario
     }
@@ -45,6 +45,10 @@ class FormularioGasto extends Component {
             </form>
         );
     }
+}
+
+FormularioGasto.propTypes = {
+    agregarGasto: PropTypes.func.isRequired,
 }
 
 export default FormularioGasto;
